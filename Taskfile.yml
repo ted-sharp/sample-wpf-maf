@@ -1,0 +1,79 @@
+version: '3'
+
+# go-task (https://taskfile.dev) で実行する。
+# Windows へのインストール例: scoop install task / winget install Task.Task
+#
+# 主要タスク:
+#   task init             : 初回セットアップ (モデル取得 + ビルド) を一括実行
+#   task download-models  : Sherpa-onnx 用モデルを models/ 配下にダウンロード
+#   task build            : ソリューション全体をビルド
+#   task run              : テキスト版 (WpfMafSample) 起動
+#   task run-stt          : 音声版 (WpfMafSampleStt) 起動
+#
+# 軽量モデルに切り替えたい場合:
+#   task download-moonshine VARIANT=tiny
+
+vars:
+  MODELS_DIR: '{{.TASKFILE_DIR}}/models'
+  VARIANT: '{{.VARIANT | default "base"}}'
+  MOONSHINE_NAME: 'sherpa-onnx-moonshine-{{.VARIANT}}-ja-quantized-2026-02-27'
+  MOONSHINE_URL: 'https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/{{.MOONSHINE_NAME}}.tar.bz2'
+  VAD_URL: 'https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx'
+
+tasks:
+  default:
+    desc: '利用可能なタスクを表示'
+    cmds:
+      - task --list
+
+  init:
+    desc: '初回セットアップ: STT モデル取得 + ソリューション全体ビルド'
+    deps:
+      - download-models
+      - build
+
+  download-models:
+    desc: 'STT モデルをダウンロード (Moonshine base ja + Silero VAD)'
+    deps:
+      - download-moonshine
+      - download-vad
+
+  download-vad:
+    desc: 'Silero VAD (silero_vad.onnx) を取得 (~630KB)'
+    status:
+      - test -f {{.MODELS_DIR}}/silero_vad.onnx
+    cmds:
+      - powershell -NoProfile -Command "New-Item -ItemType Directory -Force -Path '{{.MODELS_DIR}}' | Out-Null"
+      - powershell -NoProfile -Command "Invoke-WebRequest -Uri '{{.VAD_URL}}' -OutFile '{{.MODELS_DIR}}/silero_vad.onnx'"
+
+  download-moonshine:
+    desc: 'Moonshine ja モデルを取得・展開 (base ≒ 135MB / tiny ≒ 70MB)'
+    status:
+      - test -f {{.MODELS_DIR}}/{{.MOONSHINE_NAME}}/tokens.txt
+      - test -f {{.MODELS_DIR}}/{{.MOONSHINE_NAME}}/encoder_model.ort
+      - test -f {{.MODELS_DIR}}/{{.MOONSHINE_NAME}}/decoder_model_merged.ort
+    cmds:
+      - powershell -NoProfile -Command "New-Item -ItemType Directory -Force -Path '{{.MODELS_DIR}}' | Out-Null"
+      - powershell -NoProfile -Command "Invoke-WebRequest -Uri '{{.MOONSHINE_URL}}' -OutFile '{{.MODELS_DIR}}/{{.MOONSHINE_NAME}}.tar.bz2'"
+      - powershell -NoProfile -Command "tar -xjf '{{.MODELS_DIR}}/{{.MOONSHINE_NAME}}.tar.bz2' -C '{{.MODELS_DIR}}'"
+      - powershell -NoProfile -Command "Remove-Item '{{.MODELS_DIR}}/{{.MOONSHINE_NAME}}.tar.bz2'"
+
+  clean-models:
+    desc: 'ダウンロード済みモデルをすべて削除'
+    cmds:
+      - powershell -NoProfile -Command "if (Test-Path '{{.MODELS_DIR}}') { Remove-Item -Recurse -Force '{{.MODELS_DIR}}' }"
+
+  build:
+    desc: 'ソリューション全体ビルド'
+    cmds:
+      - dotnet build WpfMafSample.slnx
+
+  run:
+    desc: 'テキスト版 (WpfMafSample) を実行'
+    cmds:
+      - dotnet run --project src/WpfMafSample/WpfMafSample.csproj
+
+  run-stt:
+    desc: '音声版 (WpfMafSampleStt) を実行 (要: download-models 完了)'
+    cmds:
+      - dotnet run --project src/WpfMafSampleStt/WpfMafSampleStt.csproj

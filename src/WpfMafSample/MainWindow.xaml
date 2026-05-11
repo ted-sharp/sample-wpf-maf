@@ -1,0 +1,86 @@
+<Window x:Class="WpfMafSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMafSample"
+        mc:Ignorable="d"
+        Title="WPF × Microsoft Agent Framework サンプル"
+        Height="700" Width="1100">
+    <DockPanel>
+        <!-- ステータスバー -->
+        <StatusBar DockPanel.Dock="Bottom" Height="26">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="準備完了" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <TextBlock x:Name="ModelText" Text="" Foreground="Gray" />
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" MinWidth="320" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="3*" MinWidth="320" />
+            </Grid.ColumnDefinitions>
+
+            <!-- 左ペイン: チャット -->
+            <DockPanel Grid.Column="0" Margin="8">
+                <TextBlock DockPanel.Dock="Top"
+                           Text="チャット"
+                           FontWeight="Bold"
+                           Margin="0,0,0,4" />
+
+                <Grid DockPanel.Dock="Bottom" Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="InputBox"
+                             Grid.Column="0"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             MinHeight="60"
+                             MaxHeight="160"
+                             PreviewKeyDown="InputBox_PreviewKeyDown" />
+                    <Button x:Name="SendButton"
+                            Grid.Column="1"
+                            Content="送信"
+                            Width="80"
+                            Margin="6,0,0,0"
+                            Click="SendButton_Click" />
+                </Grid>
+
+                <Border BorderBrush="#CCCCCC" BorderThickness="1">
+                    <ScrollViewer x:Name="HistoryScroll" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="HistoryList" Margin="4">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Stretch"
+                          Background="#DDDDDD" />
+
+            <!-- 右ペイン: 操作対象キャンバス -->
+            <DockPanel Grid.Column="2" Margin="8">
+                <TextBlock DockPanel.Dock="Top"
+                           Text="操作キャンバス (LLM がここを変更します)"
+                           FontWeight="Bold"
+                           Margin="0,0,0,4" />
+                <Border BorderBrush="#CCCCCC" BorderThickness="1">
+                    <Canvas x:Name="TargetCanvas" Background="White" ClipToBounds="True" />
+                </Border>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>
