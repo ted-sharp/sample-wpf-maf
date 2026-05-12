@@ -8,13 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WpfMafSampleStt.Tools;
+namespace WpfMafSample.Core.Tools;
 
 /// <summary>
 /// LLM から呼び出される GUI 操作 Tool 群。
 /// 各メソッドは UI スレッドへの Dispatcher 経由で実行される。
 /// </summary>
-internal sealed class GuiTools
+public sealed class GuiTools
 {
     private readonly Window _window;
     private readonly Canvas _canvas;

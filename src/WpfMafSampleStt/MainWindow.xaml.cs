@@ -9,8 +9,9 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using WpfMafSample.Core;
+using WpfMafSample.Core.Tools;
 using WpfMafSampleStt.Speech;
-using WpfMafSampleStt.Tools;
 
 namespace WpfMafSampleStt;
 

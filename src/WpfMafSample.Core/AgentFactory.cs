@@ -2,10 +2,11 @@ using System;
 using System.ClientModel;
 using Microsoft.Extensions.AI;
 using OpenAI;
+using WpfMafSample.Core.Settings;
 
-namespace WpfMafSampleStt;
+namespace WpfMafSample.Core;
 
-internal static class AgentFactory
+public static class AgentFactory
 {
     public static IChatClient CreateChatClient(LlmSettings settings)
     {

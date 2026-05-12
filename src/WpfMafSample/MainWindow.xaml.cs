@@ -7,7 +7,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using WpfMafSample.Tools;
+using WpfMafSample.Core;
+using WpfMafSample.Core.Tools;
 
 namespace WpfMafSample;
 
