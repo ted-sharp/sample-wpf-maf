@@ -1,7 +1,7 @@
-﻿<Application x:Class="WpfMafSample.App"
+﻿<Application x:Class="SampleWpfMafStt.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfMafSample"
+             xmlns:local="clr-namespace:SampleWpfMafStt"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

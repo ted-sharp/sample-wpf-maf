@@ -1,7 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/WpfMafSample.Core/WpfMafSample.Core.csproj" />
-    <Project Path="src/WpfMafSample/WpfMafSample.csproj" />
-    <Project Path="src/WpfMafSampleStt/WpfMafSampleStt.csproj" />
-  </Folder>
-</Solution>

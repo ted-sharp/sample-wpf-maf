@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,13 +13,10 @@
     <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.5.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.7" />
-    <PackageReference Include="NAudio" Version="2.3.0" />
-    <PackageReference Include="org.k2fsa.sherpa.onnx" Version="1.13.1" />
-    <PackageReference Include="org.k2fsa.sherpa.onnx.runtime.win-x64" Version="1.13.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WpfMafSample.Core\WpfMafSample.Core.csproj" />
+    <ProjectReference Include="..\SampleWpfMaf.Core\SampleWpfMaf.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

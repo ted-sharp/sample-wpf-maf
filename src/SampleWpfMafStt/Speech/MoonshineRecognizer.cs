@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using SherpaOnnx;
 
-namespace WpfMafSampleStt.Speech;
+namespace SampleWpfMafStt.Speech;
 
 /// <summary>
 /// Sherpa-onnx の OfflineRecognizer を Moonshine (merged decoder) 構成でラップ。
@@ -58,7 +58,7 @@ internal sealed class MoonshineRecognizer : IDisposable
         var candidate1 = Path.GetFullPath(Path.Combine(baseDir, relativeOrAbsolute));
         if (Directory.Exists(candidate1)) return candidate1;
 
-        // 開発時: bin/Debug/net10.0-windows/ から見て4階層上が wpf-maf-sample/
+        // 開発時: bin/Debug/net10.0-windows/ から見て4階層上が sample-wpf-maf/
         var dev = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..", "..", relativeOrAbsolute));
         if (Directory.Exists(dev)) return dev;
 

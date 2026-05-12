@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NAudio.Wave;
 
-namespace WpfMafSampleStt.Speech;
+namespace SampleWpfMafStt.Speech;
 
 /// <summary>
 /// マイクから 16-bit PCM mono を取得し、float (-1.0~1.0) のバッファに蓄積する単発キャプチャ。

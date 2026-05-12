@@ -7,10 +7,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using WpfMafSample.Core;
-using WpfMafSample.Core.Tools;
+using SampleWpfMaf.Core;
+using SampleWpfMaf.Core.Tools;
 
-namespace WpfMafSample;
+namespace SampleWpfMaf;
 
 public partial class MainWindow : Window
 {

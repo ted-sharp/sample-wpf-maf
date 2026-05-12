@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WpfMafSample.Core.Tools;
+namespace SampleWpfMaf.Core.Tools;
 
 /// <summary>
 /// LLM から呼び出される GUI 操作 Tool 群。

@@ -1,6 +1,6 @@
-using WpfMafSample.Core.Settings;
+using SampleWpfMaf.Core.Settings;
 
-namespace WpfMafSample;
+namespace SampleWpfMaf;
 
 public sealed class AppSettings
 {

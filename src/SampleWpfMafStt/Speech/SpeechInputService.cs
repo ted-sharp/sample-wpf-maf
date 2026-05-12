@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WpfMafSampleStt.Speech;
+namespace SampleWpfMafStt.Speech;
 
 /// <summary>
 /// マイク録音 + Moonshine 認識を束ねる (PTT 専用)。

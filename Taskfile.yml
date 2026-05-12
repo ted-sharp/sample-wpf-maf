@@ -7,8 +7,8 @@ version: '3'
 #   task init             : 初回セットアップ (モデル取得 + ビルド) を一括実行
 #   task download-models  : Sherpa-onnx 用モデルを models/ 配下にダウンロード
 #   task build            : ソリューション全体をビルド
-#   task run              : テキスト版 (WpfMafSample) 起動
-#   task run-stt          : 音声版 (WpfMafSampleStt) 起動
+#   task run              : テキスト版 (SampleWpfMaf) 起動
+#   task run-stt          : 音声版 (SampleWpfMafStt) 起動
 #
 # 軽量モデルに切り替えたい場合:
 #   task download-moonshine VARIANT=tiny
@@ -66,14 +66,14 @@ tasks:
   build:
     desc: 'ソリューション全体ビルド'
     cmds:
-      - dotnet build WpfMafSample.slnx
+      - dotnet build SampleWpfMaf.slnx
 
   run:
-    desc: 'テキスト版 (WpfMafSample) を実行'
+    desc: 'テキスト版 (SampleWpfMaf) を実行'
     cmds:
-      - dotnet run --project src/WpfMafSample/WpfMafSample.csproj
+      - dotnet run --project src/SampleWpfMaf/SampleWpfMaf.csproj
 
   run-stt:
-    desc: '音声版 (WpfMafSampleStt) を実行 (要: download-models 完了)'
+    desc: '音声版 (SampleWpfMafStt) を実行 (要: download-models 完了)'
     cmds:
-      - dotnet run --project src/WpfMafSampleStt/WpfMafSampleStt.csproj
+      - dotnet run --project src/SampleWpfMafStt/SampleWpfMafStt.csproj

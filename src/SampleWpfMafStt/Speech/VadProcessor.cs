@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using SherpaOnnx;
 
-namespace WpfMafSampleStt.Speech;
+namespace SampleWpfMafStt.Speech;
 
 /// <summary>
 /// Silero VAD で音声から発話セグメント (speech segment) を抽出する。

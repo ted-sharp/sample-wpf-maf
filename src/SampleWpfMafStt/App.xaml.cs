@@ -1,9 +1,8 @@
 using System;
-using System.IO;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 
-namespace WpfMafSample;
+namespace SampleWpfMafStt;
 
 public partial class App : Application
 {

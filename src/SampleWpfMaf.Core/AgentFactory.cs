@@ -2,9 +2,9 @@ using System;
 using System.ClientModel;
 using Microsoft.Extensions.AI;
 using OpenAI;
-using WpfMafSample.Core.Settings;
+using SampleWpfMaf.Core.Settings;
 
-namespace WpfMafSample.Core;
+namespace SampleWpfMaf.Core;
 
 public static class AgentFactory
 {

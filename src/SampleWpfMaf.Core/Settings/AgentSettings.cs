@@ -1,4 +1,4 @@
-namespace WpfMafSample.Core.Settings;
+namespace SampleWpfMaf.Core.Settings;
 
 public sealed class AgentSettings
 {
